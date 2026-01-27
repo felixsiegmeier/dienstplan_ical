@@ -15,10 +15,10 @@ jahr = aktuelles_jahr if monat != 1 else aktuelles_jahr + 1
 # Hinweis: Anzahl der Tage wird nach der Eingabe von Monat/Jahr berechnet (siehe weiter unten)
 
 zeiten = {
-    "Frühdienst": ("06:30", "15:00"),
+    "Frühdienst": ("07:00", "15:30"),
     "Zwischendienst": ("10:00", "19:00"),
-    "Spätdienst": ("14:30", "23:00"),
-    "Nachtdienst": ("22:30", "08:00"),
+    "Spätdienst": ("15:00", "23:30"),
+    "Nachtdienst": ("23:00", "07:30"),
 }
 
 
