@@ -46,10 +46,11 @@ with st.expander("Schichtzeiten konfigurieren"):
         with s_col1:
             st.markdown(f"<p style='text-align:center; margin-top: 2em;'>{schicht}</p>", unsafe_allow_html=True)
         with s_col2:
-            st.time_input(label="Startzeit", value=time(start_h, start_m), key=f"{schicht}_start")
+            new_start = st.time_input(label="Startzeit", value=time(start_h, start_m), key=f"{schicht}_start")
         with s_col3:
-            st.time_input(label="Endzeit", value=time(ende_h, ende_m), key=f"{schicht}_ende")
+            new_ende = st.time_input(label="Endzeit", value=time(ende_h, ende_m), key=f"{schicht}_ende")
         st.markdown("<hr style='margin: 0.05em 0; border: 1px solid gray;'>", unsafe_allow_html=True)
+        zeiten[schicht] = (new_start, new_ende)
         
     w_col1, w_col2, w_col3 = st.columns([1.5, 2, 2])
     with w_col1:
@@ -85,7 +86,7 @@ st.session_state['tage'] = tage
 # kalender-funktionen sind jetzt in scheduler.py
 
 if st.button("iCal-Datei erstellen und herunterladen"):
-    cal = erstelle_kalender(monat, jahr, tage, wegezeit)
+    cal = erstelle_kalender(monat, jahr, tage, wegezeit, schicht_zeiten=zeiten)
     ics_content = str(cal)
     st.download_button(
         label="Dienstplan als .ics herunterladen",

@@ -1,4 +1,4 @@
-from scheduler import dienstzeiten_mit_wegezeit, erstelle_kalender
+from scheduler import dienstzeiten_mit_wegezeit, erstelle_kalender, ZEITEN
 from datetime import datetime
 
 # Teste Februar Schaltjahr und Nicht-Schaltjahr
@@ -18,7 +18,7 @@ for monat, jahr in cases:
         dienstformen[1] = 'Frühdienst'
     if num_days >= 2:
         dienstformen[2] = 'Nachtdienst'
-    cal = erstelle_kalender(monat, jahr, dienstformen, wegezeit=30)
+    cal = erstelle_kalender(monat, jahr, dienstformen, wegezeit=30, schicht_zeiten=ZEITEN)
     print(f"Events: {len(cal.events)}")
     assert isinstance(cal.events, set)
 
